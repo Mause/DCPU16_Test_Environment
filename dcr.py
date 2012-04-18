@@ -11,22 +11,14 @@ if not os.path.exists('dcpu'):
     if not os.path.exists('dcpu\\computer'): os.makedirs('dcpu\\computer')
     fh = open('dcpu.jar.zip', 'rb')
     z = zipfile.ZipFile(fh)
-#    required=[u'DCPU.class',u'DCPU$1.class',u'DCPU$1$1.class',u'DCPU$2.class',
- #             u'font.png',u'AWTKeyMapping.class',u'KeyMapping.class',u'VirtualKeyboard.class',
-  #            u'VirtualMonitor.class']
     required=[u'computer/AWTKeyMapping.class', u'computer/DCPU$1$1.class',
               u'computer/DCPU$1.class', u'computer/DCPU$2.class',
               u'computer/DCPU.class', u'computer/DCPUApplet$1.class',
               u'computer/DCPUApplet.class', u'computer/font.png',
               u'computer/KeyMapping.class', u'computer/mem.dmp',
               u'computer/VirtualKeyboard.class', u'computer/VirtualMonitor.class']
-    
-    #print 'namelist:', str(z.namelist())
     for name in z.namelist():
-        print name, str(name in required)
-        #print str(name), name.split('/')[1] == ''
         if str(name) in required:
-            print str(name), name.split('/')[1] == ''
             outfile = open('dcpu\\'+str(name), 'wb')
             outfile.write(z.read(str(name)))
             outfile.close()
